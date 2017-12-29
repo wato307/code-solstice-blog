@@ -1,0 +1,31 @@
+/*customize styles*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 120px;
+}
+
+.navbar {background-color:rgba(91,65,129,1);}
+
+/*#navbar .active a{background-color:gray;}*/
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here 
+    height: 100px;*/
+    background-color:rgba(08,08,08,1);;
+}
+
+#contentWrapper{
+  margin-top:70px;
+}
+
+#jumbotron_custom button a{
+    color:#fff;
+}

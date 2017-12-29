@@ -1,0 +1,70 @@
+{% extends "./index.html" %}
+{% load static %}
+
+{% block more_css %}
+<link href="{% static 'blog/css/blog_detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block jumbotron %}
+{% endblock jumbotron %}
+
+{% block content_head %}
+{% endblock content_head %}
+
+{% block content %}
+{% if artical %}
+<div id="artical_header">
+    <h2>{{artical.title}}</h1>
+</div>
+<div id="artical_details" class="clear_float">
+    <ul id="left_details" class="clear_float">
+        <li>作者: <a href="#">{{artical.author}}</a></li>
+        <li title="创建时间">{{artical.pub_date | timesince}} </li>
+        <li title="最近修改时间">{{artical.mod_date | timesince}} </li>
+    </ul>
+    <ul id="right_details" class="clear_float">
+        <li class="favorite" title="收藏"><a href="javascript:;" ><span class="glyphicon glyphicon-heart"></span></a> <span id="favorite_count">{{artical.favorite}} </span></li>
+        <li class="thumbsup" title="有帮助"><a href="javascript:;" ><span class="glyphicon glyphicon-thumbs-up"></span></a> <span id="thumbsup_count">{{artical.thumbsup}}</span></li>
+        <li class="thumbsdown" title="没帮助"><a href="javascript:;" ><span class="glyphicon glyphicon-thumbs-down"></span></a> <span id="thumbsdown_count">{{artical.thumbsdown}}</span></li>
+    </ul>
+</div>
+<p id="artical_content">{{artical.content}}</p>
+{% else %}
+<p>The blog doesnot exist.</p>
+{% endif %}
+{% endblock content%}
+
+{% block content_tail %}
+{% endblock content_tail %}
+
+{% block end_js %}
+{% csrf_token %}
+<script type="text/javascript">
+    $(function(){
+        var users = ['sam', 'suzy', 'xiaojun','jianwei','tao'];
+        $("#right_details .favorite").click(function(){
+            var user = users[Math.floor(Math.random()* users.length)];
+            $.ajax({
+                type:'GET',
+                url:'{% url "blog:favorite" artical.id "artical" user %}',
+                dataType:'json',
+                success:function(data, status){
+                    //data: json from view.py
+                    //status: "success"
+                    alert("success");
+                    if(data.status == 1){
+                        console.log('点赞成功, 当前帖子总赞数：' + data.favorite_count);
+                        $("#favorite_count").text(data.favorite_count);
+                    }
+                    else{
+                        console.log('点赞失败:' + data.msg);
+                    }
+                },
+                error:function(jqXHR, textStatus){
+                    alert("网络连接有问题，请稍候再试");
+                }
+            })
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %} Code Solstice - Blog Home {% endblock %}</title>
+
+    <!-- Bootstrap core css-->
+    <link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+    <!-- custom css -->
+    <link href="{% static 'blog/css/style_custom.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/jumbotron_custom.css' %}" rel="stylesheet">
+    {% block more_css %}
+    {% endblock %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bootstrap theme</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">注册/登陆</a></li>
+                    <!-- <li><a href="../navbar-static-top/">消息</a></li> -->
+                </ul>
+                <form class="nav navbar-nav navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div id="contentWrapper" class="container" role="main">
+            
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        {% block jumbotron %}
+        <div id="jumbotron_custom" class="jumbotron">
+            <h2>Code Solstice - Blog</h2>
+            <p>专注于程序员的网络博客空间。记录你的点滴心得；与千万中国程序员分享你的知识；帮助后来者提升自己的能力。</p>
+            <button type="button" class="btn btn-primary"><a href="#">了解更多 &gt;&gt;</a></button>
+        </div>
+        {% endblock jumbotron %}
+
+        <!-- Middle content section -->
+        <!-- <div class="middle"> -->
+
+        <div class="row">
+            <div id="mainContent" class="col-md-9">
+                {% block content_head %}
+                <h2>Code Solstice Blog List</h2>
+                <p>Top Blogs:</p>     
+                {% endblock content_head %}           
+
+                {% block content %}
+                <table class="table table-striped">
+                    <!-- <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        {% for artical in artical_list %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td><a href="/blog/{{artical.id}}">{{artical.title}}</a></td>
+                            <td><a href="">{{artical.author}}</a></td>
+                            <td><a href="">{{artical.pub_date}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>  
+                {% endblock content%}
+                
+                {% block content_tail%}
+                <div class="to-tutorial">
+                    <p><strong>Visit the tutorial now to learn more:</strong></p>
+                    <a href="http://www.revillweb.com/tutorials/bootstrap-tutorial/" class="btn btn-success">TO THE TUTORIAL</a>
+                </div>
+                {% endblock content_tail%}
+            </div>
+            <div class="col-md-3">
+                <h2>Resources</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="http://getbootstrap.com/" target="_blank">Download Twitter Bootstrap</a></li>
+                    <li><a href="https://www.bootstrapresponsivethemes.com/" target="_blank">Bootstrap Responsive Themes</a></li>
+                    <li><a href="http://amzn.to/1iO8NBg" target="_blank">UK: HTML & CSS: Design and Build Web Sites</a></li>
+                    <li><a href="http://amzn.to/1lESKDp" target="_blank">UK: Bootstrap Site Blueprints</a></li>
+                    <li><a href="http://amzn.to/1oXAbu6" target="_blank">US: HTML & CSS: Design and Build Web Sites</a></li>
+                    <li><a href="http://amzn.to/1lESF2w" target="_blank">US: Bootstrap Site Blueprints</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- </div> -->
+
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="col-md-4">
+                <h3><span class="glyphicon glyphicon-heart"></span> Footer section 1</h3>
+                <p>Content for the first footer section.</p>
+            </div>
+            <div class="col-md-4">
+                <h3><span class="glyphicon glyphicon-star"></span> Footer section 2</h3>
+                <p>Content for the second footer section.</p>
+            </div>
+            <div class="col-md-4">
+                <h3><span class="glyphicon glyphicon-music"></span> Footer section 3</h3>
+                <p>Content for the third footer section.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Site banner -->
+    <!-- <div class="banner" style="margin-top:70px;">
+        <div class="container">
+            <h1>Twitter Bootstrap 3: Responsive Design Tutorial</h1>
+            <p>A comprehensive tutorial showing you how to quickly create responsive designs using Twitter Bootstrap 3.</p>
+        </div>
+    </div> -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <!-- customer js -->
+    <script src="{% static 'blog/js/custom.js' %}"></script>
+
+    {% block end_js %}
+    {% endblock %}
+  </body>
+</html>

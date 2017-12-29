@@ -1,0 +1,11 @@
+#jumbotron_custom{
+    background: #eee url(../images/scenery.png) no-repeat left bottom;
+}
+
+#jumbotron_custom h2{
+    color:#fff;
+}
+
+#jumbotron_custom P{
+    color:#fff;
+}

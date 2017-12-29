@@ -1,0 +1,40 @@
+.clear_float{zoom:1;} /*支持IE6/7；IE6/7 不支持after伪类。在IE6/7上如果父类定义了宽度，不用清浮动。*/
+.clear_float:after{content:"";display:block;clear:both} /*支持IE6/7外其它浏览器。clear只对块级元素起作用。*/
+ul{padding:0; margin:0;}
+
+#artical_header{
+    text-align:center;
+    border-bottom: 1px solid #eee;
+}
+
+#artical_details{
+    border-bottom: 1px solid #eee;
+}
+
+#left_details{
+    float:left;
+    list-style: none;
+}
+#right_details{
+    float:right;
+    list-style: none;
+}
+
+#left_details li{
+    float:left;
+    margin: 5px;
+    padding: 5px;
+}
+#right_details li{
+    float:left;
+    margin: 5px;
+    padding:5px;
+}
+
+#left_details li:hover{
+    background-color:#eee;
+}
+
+#artical_content{
+    margin-top:20px;
+}
